@@ -29,3 +29,6 @@ alias logs="cd /var/log/nginx; ls -li"
 
 alias dir="ls -la" # Yes I came from windows! hehehe
 alias b="cd .."
+
+alias ..="cd .."
+alias ...="cd ../.."
