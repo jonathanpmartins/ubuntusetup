@@ -6,10 +6,10 @@ alias g:s="php artisan generate:seed"
 alias g:mig="php artisan generate:migration"
 alias g:r="php artisan generate:resource"
 
-# Laravel Migration
+# Laravel migration
 alias migrate="php artisan migrate"
 
-# Restart Things
+# Restart things
 alias reload="sudo service nginx reload"
 alias restart="sudo service nginx restart"
 alias restartphp="sudo service php5-fpm restart"
@@ -29,6 +29,9 @@ alias logs="cd /var/log/nginx; ls -li"
 
 alias dir="ls -la" # Yes I came from windows! hehehe
 alias b="cd .."
-
 alias ..="cd .."
 alias ...="cd ../.."
+
+# Laravel 
+alias homestead="~/.composer/vendor/bin/homestead"
+alias liferaft="~/.composer/vendor/bin/liferaft"
