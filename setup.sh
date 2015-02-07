@@ -10,8 +10,10 @@ ssh-keygen;
 # REPOSITORIES
 #
 
-# sublime text 3 
+# sublime text 3
 sudo add-apt-repository ppa:webupd8team/sublime-text-3;
+# brackets
+sudo add-apt-repository ppa:webupd8team/brackets;
 
 #
 # UPDATE / UPGRADE
@@ -27,11 +29,10 @@ sudo apt-get upgrade;
 #git
 sudo apt-get install git;
 
-# sublime text 3 
+# sublime text 3
 sudo apt-get install sublime-text-installer;
-
-
-
+# brackets
+sudo apt-get install brackets;
 
 #
 # SHOW SSH PUBLIC KEY
