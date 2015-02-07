@@ -38,3 +38,6 @@ sudo apt-get -y install brackets;
 #
 
 echo cat ~/.ssh/id_rsa.pub
+
+
+# nodejs, npm, meteor
