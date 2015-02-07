@@ -1,5 +1,11 @@
 
 #
+# GENERATE NEW SSH KEY
+#
+
+ssh-keygen
+
+#
 # REPOSITORIES
 #
 
