@@ -53,6 +53,9 @@ echo "----- Adding new repositories -----";
 #sudo add-apt-repository ppa:webupd8team/sublime-text-3;
 # brackets
 #sudo add-apt-repository ppa:webupd8team/brackets;
+# chrome
+#wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | sudo apt-key add - ;
+#sudo sh -c 'echo "deb http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google-chrome.list';
 
 #
 # UPDATE / UPGRADE
@@ -66,10 +69,9 @@ echo "----- Update + Upgrade -----";
 #
 #  INSTALL
 #
-
 echo "----- Installing Tools -----";
 
-mytools=( "git" "gitk" "sublime-text" "brackets" "nodejs" "npm" "nginx" "mysql-server" "php5" "php5-mcrypt" "php5-curl" "curl" "phantomjs" );
+mytools=( "google-chrome-stable" "git" "gitk" "sublime-text" "brackets" "nodejs" "npm" "nginx" "mysql-server" "php5" "php5-mcrypt" "php5-curl" "curl" "phantomjs" );
 
 for i in "${!mytools[@]}"; do
 	if [ $(dpkg-query -W -f='${Status}' "${mytools[$i]}" 2>/dev/null | grep -c "ok installed") -eq 0 ];
@@ -90,6 +92,10 @@ else
 	echo "----- Updating Composer -----";
 	sudo composer self-update;
 fi
+
+# meteor
+curl https://install.meteor.com/ | sh;
+
 
 
 exit 0;
