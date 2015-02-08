@@ -69,7 +69,7 @@ echo "----- Update + Upgrade -----";
 
 echo "----- Installing Tools -----";
 
-mytools=( "git" "gitk" "sublime-text" "brackets" "nodejs" "npm" "mysql-server" "php5" "php5-mcrypt" "php5-curl" "curl" "phantomjs" );
+mytools=( "git" "gitk" "sublime-text" "brackets" "nodejs" "npm" "nginx" "mysql-server" "php5" "php5-mcrypt" "php5-curl" "curl" "phantomjs" );
 
 for i in "${!mytools[@]}"; do
 	if [ $(dpkg-query -W -f='${Status}' "${mytools[$i]}" 2>/dev/null | grep -c "ok installed") -eq 0 ];
