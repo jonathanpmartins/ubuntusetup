@@ -1,5 +1,4 @@
 #!/bin/bash
-
 ask() {
     while true; do
         if [ "${2:-}" = "Y" ]; then
@@ -71,15 +70,30 @@ echo "----- Update + Upgrade -----";
 #
 echo "----- Installing Tools -----";
 
-mytools=( "google-chrome-stable" "git" "gitk" "sublime-text" "brackets" "nodejs" "npm" "nginx" "mysql-server" "php5" "php5-mcrypt" "php5-curl" "curl" "phantomjs" );
+apt_get_packages=( "google-chrome-stable" "git" "gitk" "sublime-text" "brackets" "nodejs-legacy" "npm" "nginx" "mysql-server" "php5" "php5-mcrypt" "php5-curl" "curl" "phantomjs" );
 
-for i in "${!mytools[@]}"; do
-	if [ $(dpkg-query -W -f='${Status}' "${mytools[$i]}" 2>/dev/null | grep -c "ok installed") -eq 0 ];
+for i in "${!apt_get_packages[@]}"; do
+	if [ $(dpkg-query -W -f='${Status}' "${apt_get_packages[$i]}" 2>/dev/null | grep -c "ok installed") -eq 0 ];
 	then
-		echo "----- Installing ${mytools[$i]} -----";
-		sudo apt-get install -y ${mytools[$i]};
+		echo "----- Installing ${apt_get_packages[$i]} -----";
+		sudo apt-get install -y ${apt_get_packages[$i]};
 	else
-		echo "----- '${mytools[$i]}' already installed -----";
+		echo "----- '${apt_get_packages[$i]}' already installed -----";
+	fi
+done
+
+sudo php5enmod mcrypt;
+
+npm_packages=( "gulp" "bower" "mup" "browserify" );
+
+for i in "${!npm_packages[@]}"; do
+
+	if [ $(npm list -g "${npm_packages[$i]}" 2>/dev/null | grep -c "${npm_packages[$i]}") -eq 0 ];
+	then
+		echo "----- Installing ${npm_packages[$i]} -----";
+		sudo npm install -g ${npm_packages[$i]};
+	else
+		echo "----- '${npm_packages[$i]}' already installed -----";
 	fi
 done
 
@@ -93,13 +107,16 @@ else
 	sudo composer self-update;
 fi
 
-# meteor
-curl https://install.meteor.com/ | sh;
-
+# meteor js
+if [ ! -f ~/.meteor ]; then
+	echo "----- Installing Meteor -----";
+	curl https://install.meteor.com/ | sh;
+else
+	echo "----- Updating Meteor -----";
+	#sudo composer self-update;
+fi
 
 
 exit 0;
 
-sudo php5enmod mcrypt;
-
-# nodejs, npm, meteor
+sudo chown -R jonathan:jonathan ~/.npm;
