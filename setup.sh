@@ -49,12 +49,12 @@ fi
 echo "----- Adding new repositories -----";
 
 # sublime text 3
-#sudo add-apt-repository ppa:webupd8team/sublime-text-3;
+sudo add-apt-repository ppa:webupd8team/sublime-text-3;
 # brackets
-#sudo add-apt-repository ppa:webupd8team/brackets;
+sudo add-apt-repository ppa:webupd8team/brackets;
 # chrome
-#wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | sudo apt-key add - ;
-#sudo sh -c 'echo "deb http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google-chrome.list';
+wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | sudo apt-key add - ;
+sudo sh -c 'echo "deb http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google-chrome.list';
 
 #
 # UPDATE / UPGRADE
@@ -62,8 +62,8 @@ echo "----- Adding new repositories -----";
 
 echo "----- Update + Upgrade -----";
 
-#sudo apt-get update;
-#sudo apt-get -y upgrade;
+sudo apt-get update;
+sudo apt-get -y upgrade;
 
 #
 #  INSTALL
