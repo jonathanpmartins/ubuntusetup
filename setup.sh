@@ -69,19 +69,31 @@ echo "----- Update + Upgrade -----";
 
 echo "----- Installing Tools -----";
 
-mytools=( "git" "gitk" "sublime-text" "brackets" "nodejs" "npm" );
+mytools=( "git" "gitk" "sublime-text" "brackets" "nodejs" "npm" "mysql-server" "php5" "php5-mcrypt" "php5-curl" "curl" "phantomjs" );
 
 for i in "${!mytools[@]}"; do
 	if [ $(dpkg-query -W -f='${Status}' "${mytools[$i]}" 2>/dev/null | grep -c "ok installed") -eq 0 ];
 	then
+		echo "----- Installing ${mytools[$i]} -----";
 		sudo apt-get install -y ${mytools[$i]};
 	else
-		echo "----- ${mytools[$i]} already installed -----";
+		echo "----- '${mytools[$i]}' already installed -----";
 	fi
 done
 
+# composer
+if [ ! -f /usr/local/bin/composer ]; then
+	echo "----- Installing Composer -----";
+	curl -sS https://getcomposer.org/installer | php;
+	sudo mv composer.phar /usr/local/bin/composer;
+else
+	echo "----- Updating Composer -----";
+	sudo composer self-update;
+fi
+
+
 exit 0;
 
-
+sudo php5enmod mcrypt;
 
 # nodejs, npm, meteor
