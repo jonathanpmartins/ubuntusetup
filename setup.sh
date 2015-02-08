@@ -108,7 +108,7 @@ else
 fi
 
 # meteor js
-if [ ! -f ~/.meteor ]; then
+if [ ! -d ~/.meteor ]; then
 	echo "----- Installing Meteor -----";
 	curl https://install.meteor.com/ | sh;
 else
@@ -116,7 +116,6 @@ else
 	#sudo composer self-update;
 fi
 
+sudo chown -R jonathan:jonathan ~/.npm;
 
 exit 0;
-
-sudo chown -R jonathan:jonathan ~/.npm;
