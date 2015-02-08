@@ -111,9 +111,6 @@ fi
 if [ ! -d ~/.meteor ]; then
 	echo "----- Installing Meteor -----";
 	curl https://install.meteor.com/ | sh;
-else
-	echo "----- Updating Meteor -----";
-	#sudo composer self-update;
 fi
 
 sudo chown -R jonathan:jonathan ~/.npm;
