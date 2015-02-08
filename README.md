@@ -7,4 +7,6 @@ The "subl" command can be changed by "vi" or "nano" on the server.
 
 
 
--> Setup for bash 4.0 +
+# Setup for bash 4.0 +
+
+	sh setup.sh;
