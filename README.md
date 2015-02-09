@@ -3,6 +3,8 @@ Setup
 
 This is my installation script. With it you can rapidly setup your web development environment. The file is scripted with bash 4.0+ and we recommend you to use it with Ubuntu.
 
+Currently the shell script install the following tools:
+
 - [Git](http://git-scm.com/)
 - [Gitk](http://git-scm.com/docs/gitk)
 - [Brackets](http://brackets.io/)
