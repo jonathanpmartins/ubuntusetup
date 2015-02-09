@@ -1,4 +1,5 @@
 #!/bin/bash
+
 ask() {
     while true; do
         if [ "${2:-}" = "Y" ]; then
@@ -115,7 +116,10 @@ fi
 
 sudo chown -R jonathan:jonathan ~/.npm;
 
-if [ $(alias 2>/dev/null | grep -c "mybash") -eq 0 ];
+#
+# ADD ALIASES TO BASH
+#
+if [ $(cat ~/.bashrc | grep -c "mybash") -eq 0 ];
 then
 echo '
 
@@ -137,7 +141,6 @@ alias logs="cd /var/log/nginx; ls -li"
 alias dir="ls -la"
 alias b="cd .."
 alias ..="cd .."
-alias ...="cd ../.."
-' >> ~/.bashrc;
-	source ~/.bashrc;
+alias ...="cd ../.."' >> ~/.bashrc;
+	exec bash;
 fi
