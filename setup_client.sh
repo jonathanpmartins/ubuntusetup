@@ -115,4 +115,29 @@ fi
 
 sudo chown -R jonathan:jonathan ~/.npm;
 
-exit 0;
+if [ $(alias 2>/dev/null | grep -c "mybash") -eq 0 ];
+then
+echo '
+
+alias reload="sudo service nginx reload"
+alias restart="sudo service nginx restart"
+alias restartphp="sudo service php5-fpm restart"
+alias restartsql="sudo service mysql restart"
+
+alias hosts="sudo subl /etc/hosts"
+alias phpini="sudo subl /etc/php5/fpm/php.ini"
+alias mybash="subl ~/.bashrc"
+
+alias vhosts="cd /etc/nginx/sites-available; ls -li"
+alias www="cd /var/www; ls -li"
+alias html="cd /var/www/html; ls -li"
+alias dev="cd /var/www/dev; ls -li"
+alias logs="cd /var/log/nginx; ls -li"
+
+alias dir="ls -la"
+alias b="cd .."
+alias ..="cd .."
+alias ...="cd ../.."
+' >> ~/.bashrc;
+	source ~/.bashrc;
+fi
