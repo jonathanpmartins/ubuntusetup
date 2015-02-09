@@ -18,3 +18,4 @@ This is my installation script. With it you can rapidly setup your web developme
 - [Gulp](http://gulpjs.com/)
 - [Mup](https://github.com/arunoda/meteor-up)
 - [Browserify](http://browserify.org/)
+- [Filezilla](https://filezilla-project.org/)
