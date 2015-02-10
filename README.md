@@ -21,3 +21,8 @@ Currently the shell script install the following tools:
 - [Mup](https://github.com/arunoda/meteor-up)
 - [Browserify](http://browserify.org/)
 - [Filezilla](https://filezilla-project.org/)
+
+How to use
+
+	chmod +x setup_client.sh;
+	./setup_client.sh;
