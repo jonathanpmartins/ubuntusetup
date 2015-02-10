@@ -24,5 +24,7 @@ Currently the shell script install the following tools:
 
 How to use
 
-	chmod +x setup_client.sh;
-	./setup_client.sh;
+```shell
+chmod +x setup_client.sh;
+./setup_client.sh;
+```
