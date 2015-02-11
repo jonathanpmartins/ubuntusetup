@@ -1,5 +1,4 @@
 #!/bin/bash
-
 ask() {
     while true; do
         if [ "${2:-}" = "Y" ]; then
@@ -114,7 +113,7 @@ if [ ! -d ~/.meteor ]; then
 	curl https://install.meteor.com/ | sh;
 fi
 
-sudo chown -R jonathan:jonathan ~/.npm;
+sudo chown -R $LOGNAME:$LOGNAME ~/.npm;
 
 #
 # ADD ALIASES TO BASH
