@@ -33,10 +33,10 @@ if [ ! -f ~/.ssh/id_rsa.pub ]; then
 	ssh-keygen;
 fi
 
-echo "--------------- Here is your ssh public key ---------------";
+echo "--------------- Here is your ssh public key";
 cat ~/.ssh/id_rsa.pub || echo;
 
-if ask "--------------- Have you copied the key? Can we proceed? ---------------" y; then
+if ask "--------------- Have you copied the key? Can we proceed?" y; then
     echo "Forward...";
 else
     exit 0;
@@ -46,20 +46,20 @@ fi
 # REPOSITORIES
 #
 
-echo "--------------- Adding new repositories ---------------";
+echo "--------------- Adding new repositories";
 # sublime text 3
 if [ $(sudo apt-cache policy | grep -c "sublime-text-3") -eq 0 ];
 then
 	sudo add-apt-repository ppa:webupd8team/sublime-text-3;
 else
-	echo "--------------- Sublime Text 3 repository already installed ---------------";
+	echo "--------------- Sublime Text 3 repository already installed";
 fi
 # brackets
 if [ $(sudo apt-cache policy | grep -c "brackets") -eq 0 ];
 then
 	sudo add-apt-repository ppa:webupd8team/brackets;
 else
-	echo "--------------- Brackets repository already installed ---------------";
+	echo "--------------- Brackets repository already installed";
 fi
 # chrome
 if [ $(sudo apt-cache policy | grep -c "chrome") -eq 0 ];
@@ -67,14 +67,14 @@ then
 	wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | sudo apt-key add - ;
 	sudo sh -c 'echo "deb http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google-chrome.list';
 else
-	echo "--------------- Chrome repository already installed ---------------";
+	echo "--------------- Chrome repository already installed";
 fi
 
 #
 # UPDATE / UPGRADE
 #
 
-echo "--------------- Update + Upgrade ---------------";
+echo "--------------- Update + Upgrade";
 
 sudo apt-get update;
 sudo apt-get -y upgrade;
@@ -82,17 +82,22 @@ sudo apt-get -y upgrade;
 #
 #  INSTALL
 #
-echo "--------------- Installing Tools ---------------";
+echo "--------------- Installing Tools";
 
-apt_get_packages=( "google-chrome-stable" "brackets" "sublime-text" "git" "gitk" "nodejs-legacy" "npm" "mysql-server" "php5-mysql" "php5-fpm" "php5-cli" "php5-mcrypt" "php5-curl" "curl" "nginx" "phantomjs" "filezilla" "virtualbox" "virtualbox-dkms" "vagrant" );
+apt_get_packages=( "google-chrome-stable" "brackets" "sublime-text-installer" "git" "gitk" "nodejs-legacy" "npm" "mysql-server" "php5-mysql" "php5-fpm" "php5-cli" "php5-mcrypt" "php5-curl" "curl" "nginx" "phantomjs" "filezilla" "virtualbox" "virtualbox-dkms" "vagrant" );
 
 for i in "${!apt_get_packages[@]}"; do
 	if [ $(dpkg-query -W -f='${Status}' "${apt_get_packages[$i]}" 2>/dev/null | grep -c "ok installed") -eq 0 ];
 	then
-		echo "--------------- Installing ${apt_get_packages[$i]} ---------------";
-		sudo apt-get install -y ${apt_get_packages[$i]};
+		echo "--------------- Installing ${apt_get_packages[$i]}";
+		if [ $(echo ${apt_get_packages[$i]} | grep -c "sublime-text-installer") -eq 1 ]
+		then
+			sudo apt-get install -y sublime-text;
+		else
+			sudo apt-get install -y ${apt_get_packages[$i]};
+		fi
 	else
-		echo "--------------- '${apt_get_packages[$i]}' already installed ---------------";
+		echo "--------------- '${apt_get_packages[$i]}' already installed";
 	fi
 done
 
@@ -104,10 +109,10 @@ for i in "${!npm_packages[@]}"; do
 
 	if [ $(npm list -g "${npm_packages[$i]}" 2>/dev/null | grep -c "${npm_packages[$i]}") -eq 0 ];
 	then
-		echo "--------------- Installing ${npm_packages[$i]} ---------------";
+		echo "--------------- Installing ${npm_packages[$i]}";
 		sudo npm install -g ${npm_packages[$i]};
 	else
-		echo "--------------- '${npm_packages[$i]}' already installed ---------------";
+		echo "--------------- '${npm_packages[$i]}' already installed";
 	fi
 done
 
@@ -115,17 +120,17 @@ sudo chown -R $LOGNAME:$LOGNAME ~/.npm;
 
 # composer
 if [ ! -f /usr/local/bin/composer ]; then
-	echo "--------------- Installing Composer ---------------";
+	echo "--------------- Installing Composer";
 	curl -sS https://getcomposer.org/installer | php;
 	sudo mv composer.phar /usr/local/bin/composer;
 else
-	echo "--------------- Updating Composer ---------------";
+	echo "--------------- Updating Composer";
 	sudo composer self-update;
 fi
 
 # meteor js
 if [ ! -d ~/.meteor ]; then
-	echo "--------------- Installing Meteor ---------------";
+	echo "--------------- Installing Meteor";
 	curl https://install.meteor.com/ | sh;
 fi
 
