@@ -97,6 +97,8 @@ for i in "${!npm_packages[@]}"; do
 	fi
 done
 
+sudo chown -R $LOGNAME:$LOGNAME ~/.npm;
+
 # composer
 if [ ! -f /usr/local/bin/composer ]; then
 	echo "----- Installing Composer -----";
@@ -112,8 +114,6 @@ if [ ! -d ~/.meteor ]; then
 	echo "----- Installing Meteor -----";
 	curl https://install.meteor.com/ | sh;
 fi
-
-sudo chown -R $LOGNAME:$LOGNAME ~/.npm;
 
 #
 # ADD ALIASES TO BASH
