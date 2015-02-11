@@ -27,6 +27,6 @@ Currently the shell script install the following tools:
 How to use
 
 ```shell
-chmod +x setup_client.sh;
+chmod +x setup_bundle.sh;
 ./setup_client.sh;
 ```
