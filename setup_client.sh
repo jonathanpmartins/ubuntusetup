@@ -47,14 +47,28 @@ fi
 #
 
 echo "----- Adding new repositories -----";
-
 # sublime text 3
-sudo add-apt-repository ppa:webupd8team/sublime-text-3;
+if [ $(sudo apt-cache policy | grep -c "sublime-text-3") -eq 0 ];
+then
+	sudo add-apt-repository ppa:webupd8team/sublime-text-3;
+else
+	echo "----- Sublime Text 3 repository already installed -----";
+fi
 # brackets
-sudo add-apt-repository ppa:webupd8team/brackets;
+if [ $(sudo apt-cache policy | grep -c "brackets") -eq 0 ];
+then
+	sudo add-apt-repository ppa:webupd8team/brackets;
+else
+	echo "----- Brackets repository already installed -----";
+fi
 # chrome
-wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | sudo apt-key add - ;
-sudo sh -c 'echo "deb http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google-chrome.list';
+if [ $(sudo apt-cache policy | grep -c "chrome") -eq 0 ];
+then
+	wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | sudo apt-key add - ;
+	sudo sh -c 'echo "deb http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google-chrome.list';
+else
+	echo "----- Chrome repository already installed -----";
+fi
 
 #
 # UPDATE / UPGRADE
@@ -70,7 +84,7 @@ sudo apt-get -y upgrade;
 #
 echo "----- Installing Tools -----";
 
-apt_get_packages=( "google-chrome-stable" "brackets" "sublime-text" "git" "gitk" "nodejs-legacy" "npm" "mysql-server" "php5-mysql" "php5-fpm" "php5-cli" "php5-mcrypt" "php5-curl" "curl" "nginx" "phantomjs" "filezilla" );
+apt_get_packages=( "google-chrome-stable" "brackets" "sublime-text" "git" "gitk" "nodejs-legacy" "npm" "mysql-server" "php5-mysql" "php5-fpm" "php5-cli" "php5-mcrypt" "php5-curl" "curl" "nginx" "phantomjs" "filezilla" "virtualbox" "virtualbox-dkms" "vagrant" );
 
 for i in "${!apt_get_packages[@]}"; do
 	if [ $(dpkg-query -W -f='${Status}' "${apt_get_packages[$i]}" 2>/dev/null | grep -c "ok installed") -eq 0 ];
