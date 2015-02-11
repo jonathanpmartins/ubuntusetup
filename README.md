@@ -21,6 +21,8 @@ Currently the shell script install the following tools:
 - [Mup](https://github.com/arunoda/meteor-up)
 - [Browserify](http://browserify.org/)
 - [Filezilla](https://filezilla-project.org/)
+- [VirtualBox](https://www.virtualbox.org/)
+- [Vagrant](https://www.vagrantup.com/)
 
 How to use
 
