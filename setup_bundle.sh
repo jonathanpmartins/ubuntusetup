@@ -84,7 +84,7 @@ sudo apt-get -y upgrade;
 #
 echo "--------------- Installing Tools";
 
-apt_get_packages=( "google-chrome-stable" "brackets" "sublime-text-installer" "git" "gitk" "nodejs-legacy" "npm" "mysql-server" "php5-mysql" "php5-fpm" "php5-cli" "php5-mcrypt" "php5-curl" "curl" "nginx" "phantomjs" "filezilla" "virtualbox" "virtualbox-dkms" "vagrant" );
+apt_get_packages=( "google-chrome-stable" "brackets" "sublime-text-installer" "git" "gitk" "git-gui" "nodejs-legacy" "npm" "mysql-server" "php5-mysql" "php5-fpm" "php5-cli" "php5-mcrypt" "php5-curl" "curl" "nginx" "phantomjs" "filezilla" "virtualbox" "virtualbox-dkms" "vagrant" );
 
 for i in "${!apt_get_packages[@]}"; do
 	if [ $(dpkg-query -W -f='${Status}' "${apt_get_packages[$i]}" 2>/dev/null | grep -c "ok installed") -eq 0 ];
