@@ -69,6 +69,14 @@ then
 else
 	echo "--------------- Chrome repository already installed";
 fi
+#skype
+if [ $(sudo apt-cache policy | grep -c "skype") -eq 0 ];
+then
+	sudo add-apt-repository "deb http://archive.canonical.com/ $(lsb_release -sc) partner";
+else
+	echo "--------------- Skype repository already installed";
+fi
+
 
 #
 # UPDATE / UPGRADE
@@ -84,7 +92,7 @@ sudo apt-get -y upgrade;
 #
 echo "--------------- Installing Tools";
 
-apt_get_packages=( "google-chrome-stable" "brackets" "sublime-text-installer" "git" "git-core" "gitk" "git-gui" "nodejs-legacy" "npm" "mysql-server" "php5-mysql" "php5-fpm" "php5-cli" "php5-mcrypt" "php5-curl" "curl" "nginx" "ruby-full" "phantomjs" "filezilla" "virtualbox" "virtualbox-dkms" "vagrant" );
+apt_get_packages=( "google-chrome-stable" "brackets" "sublime-text-installer" "git" "git-core" "gitk" "git-gui" "nodejs-legacy" "npm" "mysql-server" "php5-mysql" "php5-fpm" "php5-cli" "php5-mcrypt" "php5-curl" "curl" "nginx" "ruby-full" "phantomjs" "filezilla" "virtualbox" "virtualbox-dkms" "vagrant" "skype" );
 
 for i in "${!apt_get_packages[@]}"; do
 	if [ $(dpkg-query -W -f='${Status}' "${apt_get_packages[$i]}" 2>/dev/null | grep -c "ok installed") -eq 0 ];

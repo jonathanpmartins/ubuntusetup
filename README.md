@@ -23,6 +23,7 @@ Currently the shell script install the following tools:
 - [Filezilla](https://filezilla-project.org/)
 - [VirtualBox](https://www.virtualbox.org/)
 - [Vagrant](https://www.vagrantup.com/)
+- [Skype](http://www.skype.com/)
 
 How to use
 
