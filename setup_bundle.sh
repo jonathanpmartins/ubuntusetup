@@ -147,6 +147,15 @@ fi
 #
 if [ $(cat ~/.bashrc | grep -c "mybash") -eq 0 ];
 then
+	
+	# working on
+	#Install Elastic Beanstalk
+	#if [ $($LOGNAME | grep -c "jonathan") -eq 1 ];
+	#then
+		# Download From https://s3.amazonaws.com/elasticbeanstalk/cli/AWS-ElasticBeanstalk-CLI-2.6.4.zip
+		#export PATH=$PATH:/usr/share/aws/eb/linux/python2.7/
+	#fi
+
 echo '
 
 alias reload="sudo service nginx reload"
@@ -170,3 +179,4 @@ alias ..="cd .."
 alias ...="cd ../.."' >> ~/.bashrc;
 	exec bash;
 fi
+
