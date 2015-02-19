@@ -14,7 +14,7 @@ sudo apt-get -y upgrade;
 #
 echo "--------------- Installing Tools";
 
-apt_get_packages=( "git" "curl" "nodejs-legacy" "npm" "mysql-server" "php5-mysql" "php5-fpm" "php5-cli" "php5-mcrypt" "php5-curl" "php5-json" "php5-gd" "nginx" "ruby-full" "phantomjs" );
+apt_get_packages=( "git" "curl" "nodejs-legacy" "npm" "mysql-server" "php5-mysql" "php5-fpm" "php5-cli" "php5-mcrypt" "mcrypt" "php5-curl" "php5-json" "php5-gd" "nginx" "ruby-full" "phantomjs" );
 
 for i in "${!apt_get_packages[@]}"; do
 	if [ $(dpkg-query -W -f='${Status}' "${apt_get_packages[$i]}" 2>/dev/null | grep -c "ok installed") -eq 0 ];
@@ -27,6 +27,7 @@ for i in "${!apt_get_packages[@]}"; do
 done
 
 sudo php5enmod mcrypt;
+sudo service nginx restart;
 
 npm_packages=( "gulp" );
 
@@ -58,7 +59,6 @@ fi
 #
 if [ $(cat ~/.bashrc | grep -c "mybash") -eq 0 ];
 then
-	
 
 echo '
 
