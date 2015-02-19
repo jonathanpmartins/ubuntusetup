@@ -69,6 +69,14 @@ then
 else
 	echo "--------------- Chrome repository already installed";
 fi
+#skype
+if [ $(sudo apt-cache policy | grep -c "skype") -eq 0 ];
+then
+	sudo add-apt-repository "deb http://archive.canonical.com/ $(lsb_release -sc) partner";
+else
+	echo "--------------- Skype repository already installed";
+fi
+
 
 #
 # UPDATE / UPGRADE
@@ -84,7 +92,7 @@ sudo apt-get -y upgrade;
 #
 echo "--------------- Installing Tools";
 
-apt_get_packages=( "google-chrome-stable" "brackets" "sublime-text-installer" "git" "gitk" "nodejs-legacy" "npm" "curl" "nginx" );
+apt_get_packages=( "google-chrome-stable" "brackets" "sublime-text-installer" "git" "curl" "git-core" "gitk" "git-gui" "nodejs-legacy" "npm" "mysql-server" "php5-mysql" "php5-fpm" "php5-cli" "php5-mcrypt" "php5-curl" "php5-json" "php5-gd" "nginx" "ruby-full" "phantomjs" "filezilla" "virtualbox" "virtualbox-dkms" "vagrant" "skype" "docker.io" "python-pip" );
 
 for i in "${!apt_get_packages[@]}"; do
 	if [ $(dpkg-query -W -f='${Status}' "${apt_get_packages[$i]}" 2>/dev/null | grep -c "ok installed") -eq 0 ];
@@ -118,6 +126,16 @@ done
 
 sudo chown -R $LOGNAME:$LOGNAME ~/.npm;
 
+# composer
+if [ ! -f /usr/local/bin/composer ]; then
+	echo "--------------- Installing Composer";
+	curl -sS https://getcomposer.org/installer | php;
+	sudo mv composer.phar /usr/local/bin/composer;
+else
+	echo "--------------- Updating Composer";
+	sudo composer self-update;
+fi
+
 # meteor js
 if [ ! -d ~/.meteor ]; then
 	echo "--------------- Installing Meteor";
@@ -129,12 +147,24 @@ fi
 #
 if [ $(cat ~/.bashrc | grep -c "mybash") -eq 0 ];
 then
+	
+	# working on
+	#Install Elastic Beanstalk
+	#if [ $($LOGNAME | grep -c "jonathan") -eq 1 ];
+	#then
+		# Download From https://s3.amazonaws.com/elasticbeanstalk/cli/AWS-ElasticBeanstalk-CLI-2.6.4.zip
+		#export PATH=$PATH:/usr/share/aws/eb/linux/python2.7/
+	#fi
+
 echo '
 
 alias reload="sudo service nginx reload"
 alias restart="sudo service nginx restart"
+alias restartphp="sudo service php5-fpm restart"
+alias restartsql="sudo service mysql restart"
 
 alias hosts="sudo subl /etc/hosts"
+alias phpini="sudo subl /etc/php5/fpm/php.ini"
 alias mybash="subl ~/.bashrc"
 
 alias vhosts="cd /etc/nginx/sites-available; ls -li"
@@ -149,3 +179,4 @@ alias ..="cd .."
 alias ...="cd ../.."' >> ~/.bashrc;
 	exec bash;
 fi
+
