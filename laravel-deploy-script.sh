@@ -29,7 +29,7 @@ ask() {
 }
 
 setPull() {
-	STRING="$STRING git pull; git checkout develop;"
+	STRING="$STRING git pull; git checkout develop; composer dump-autoload;"
 }
 
 setMigrationReset() {
@@ -54,9 +54,7 @@ else
 fi
 
 if ask "composer update?" y; then
-    STRING="$STRING composer update;"
-else
-	STRING="$STRING composer dump-autoload;"
+    STRING="$STRING composer update; git checkout composer.lock;"
 fi
 
 STRING="$STRING php artisan route:scan; php artisan route:cache; gulp;"
