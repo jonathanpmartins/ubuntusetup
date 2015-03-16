@@ -85,6 +85,8 @@ else
 fi
 
 
+#openjdk-8-jre-headless
+
 
 
 #
@@ -95,16 +97,14 @@ echo "--------------- Update + Upgrade";
 
 sudo apt-get update;
 sudo apt-get -y upgrade;
-sudo apt-get dist-upgrade
+#sudo apt-get dist-upgrade
 
 #
 #  INSTALL
 #
 echo "--------------- Installing Tools";
 
-apt_get_packages=("google-chrome-stable" "brackets" "sublime-text-installer" "git" "curl" "git-core" "gitk" "git-gui" "nodejs-legacy" "npm" "mysql-server" "php5-mysql" "php5-fpm" "php5-cli" "php5-mcrypt" "php5-curl" "php5-json" "php5-gd" "nginx" "ruby-full" "phantomjs" "filezilla" "virtualbox" "virtualbox-dkms" "vagrant" "skype" "docker.io" "python-pip" "meld" "inotify-tools");
-
-# openjdk-7-jre oracle-java8-installer
+apt_get_packages=("google-chrome-stable" "brackets" "sublime-text-installer" "git" "curl" "git-core" "gitk" "git-gui" "nodejs-legacy" "npm" "mysql-server" "php5-mysql" "php5-fpm" "php5-cli" "php5-mcrypt" "php5-curl" "php5-json" "php5-gd" "nginx" "ruby-full" "phantomjs" "filezilla" "virtualbox" "virtualbox-dkms" "vagrant" "skype" "docker.io" "python-pip" "meld" "inotify-tools" "openjdk-7-jre" "oracle-java8-installer");
 
 for i in "${!apt_get_packages[@]}"; do
 	if [ $(dpkg-query -W -f='${Status}' "${apt_get_packages[$i]}" 2>/dev/null | grep -c "ok installed") -eq 0 ];
@@ -123,7 +123,7 @@ done
 
 sudo php5enmod mcrypt;
 
-npm_packages=( "gulp" "bower" "mup" "browserify" );
+npm_packages=("gulp" "bower" "mup" "browserify");
 
 for i in "${!npm_packages[@]}"; do
 
