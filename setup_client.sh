@@ -84,11 +84,6 @@ else
 	echo "--------------- Java repository already installed";
 fi
 
-
-#openjdk-8-jre-headless
-
-
-
 #
 # UPDATE / UPGRADE
 #
@@ -122,6 +117,7 @@ for i in "${!apt_get_packages[@]}"; do
 done
 
 sudo php5enmod mcrypt;
+sudo php5enmod xdebug;
 
 npm_packages=("gulp" "bower" "mup" "browserify");
 
