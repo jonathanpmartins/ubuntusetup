@@ -174,8 +174,8 @@ alias restartsql="sudo service mysql restart"
 alias hosts="sudo subl /etc/hosts"
 alias phpini="sudo subl /etc/php5/fpm/php.ini"
 alias mybash="subl ~/.bashrc"
+alias vhosts="sudo subl /etc/nginx/sites-available;"
 
-alias vhosts="cd /etc/nginx/sites-available; ls -li"
 alias www="cd /var/www; ls -li"
 alias html="cd /var/www/html; ls -li"
 alias dev="cd /var/www/dev; ls -li"
@@ -184,7 +184,18 @@ alias logs="cd /var/log/nginx; ls -li"
 alias dir="ls -la"
 alias b="cd .."
 alias ..="cd .."
-alias ...="cd ../.."' >> ~/.bashrc;
+alias ...="cd ../.."
+
+alias dump="composer dump-autoload;"
+alias migrate="php artisan migrate;"
+alias refresh="php artisan migrate:refresh --seed";
+alias seed="php artisan db:seed";
+
+alias push="git push origin develop;";
+
+alias run="codecept run -d;";
+
+' >> ~/.bashrc;
 	exec bash;
 fi
 
