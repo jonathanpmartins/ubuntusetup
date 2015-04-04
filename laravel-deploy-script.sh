@@ -1,6 +1,8 @@
 #!/bin/bash
 
-STRING="cd /var/www/app; sudo chmod -R 777 storage;"
+echo '********** Preparing Deploy to Develop Branch *********';
+
+STRING="cd /var/www/app; sudo chmod -R 777 storage; sudo chown -R www-data:adm storage/;"
 
 ask() {
     while true; do
@@ -41,23 +43,31 @@ setMigration() {
 }
 
 if ask "Refresh database?" y; then
-	setMigrationReset
-	setPull
-	setMigration
+    setMigrationReset
+    setPull
+    setMigration
 else
-	if ask "Migrate database?" y; then
-		setPull
-		setMigration
-	else
-		setPull
-	fi
+    if ask "Migrate database?" y; then
+        setPull
+        setMigration
+    else
+        setPull
+    fi
 fi
 
 if ask "composer update?" y; then
     STRING="$STRING composer update; git checkout composer.lock;"
 fi
 
-STRING="$STRING php artisan route:scan; php artisan route:cache; gulp;"
+if ask "bower update?" y; then
+    STRING="$STRING bower update;"
+fi
+
+if ask "gulp?" y; then
+    STRING="$STRING gulp --production;"
+fi
+
+STRING="$STRING php artisan optimize; php artisan route:scan; php artisan route:cache;"
 
 ssh myServer "$STRING";
 
