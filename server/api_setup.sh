@@ -59,6 +59,7 @@ if [ ! -f /usr/local/bin/codecept ]; then
 	echo "--------------- Installing Codeception";
 	wget http://codeception.com/codecept.phar;
 	sudo mv codecept.phar /usr/local/bin/codecept;
+	sudo chmod +x /usr/local/bin/codecept;
 else
 	echo "--------------- Updating Codeception";
 	sudo codecept self-update;
