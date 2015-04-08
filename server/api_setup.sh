@@ -14,7 +14,7 @@ sudo apt-get -y upgrade;
 #
 echo "--------------- Installing Tools";
 
-apt_get_packages=( "git" "curl" "nodejs-legacy" "npm" "mysql-server" "php5-mysql" "php5-fpm" "php5-cli" "php5-mcrypt" "mcrypt" "php5-curl" "php5-json" "php5-gd" "nginx" "libnotify-bin" );
+apt_get_packages=( "git" "curl" "nodejs-legacy" "npm" "php5-mysql" "php5-fpm" "php5-cli" "php5-mcrypt" "mcrypt" "php5-curl" "php5-json" "php5-gd" "nginx" );
 
 for i in "${!apt_get_packages[@]}"; do
 	if [ $(dpkg-query -W -f='${Status}' "${apt_get_packages[$i]}" 2>/dev/null | grep -c "ok installed") -eq 0 ];
@@ -53,6 +53,17 @@ else
 	echo "--------------- Updating Composer";
 	sudo composer self-update;
 fi
+
+# codeception
+if [ ! -f /usr/local/bin/codecept ]; then
+	echo "--------------- Installing Codeception";
+	wget http://codeception.com/codecept.phar .;
+	sudo mv codecept.phar /usr/local/bin/codecept;
+else
+	echo "--------------- Updating Codeception";
+	sudo codecept self-update;
+fi
+
 
 #
 # ADD ALIASES TO BASH
