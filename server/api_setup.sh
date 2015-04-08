@@ -29,7 +29,7 @@ done
 sudo php5enmod mcrypt;
 sudo service nginx restart;
 
-npm_packages=( "gulp" );
+npm_packages=( "gulp" "bower" "browserify" );
 
 for i in "${!npm_packages[@]}"; do
 
@@ -73,13 +73,20 @@ alias mybash="vi ~/.bashrc"
 
 alias vhosts="cd /etc/nginx/sites-available; ls -li"
 alias www="cd /var/www; ls -li"
-alias html="cd /var/www/html; ls -li"
-alias dev="cd /var/www/dev; ls -li"
+alias html="cd /var/www/html/api; ls -li"
+alias dev="cd /var/www/dev/api; ls -li"
 alias logs="cd /var/log/nginx; ls -li"
 
 alias dir="ls -la"
 alias b="cd .."
 alias ..="cd .."
-alias ...="cd ../.."' >> ~/.bashrc;
+alias ...="cd ../.."
+
+alias dump="composer dump-autoload;"
+alias run="codecept run functional -d;";
+
+alias error.log="tail -f /var/log/nginx/error.log"
+
+' >> ~/.bashrc;
 	exec bash;
 fi
