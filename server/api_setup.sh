@@ -85,8 +85,8 @@ alias mybash="vi ~/.bashrc"
 
 alias vhosts="cd /etc/nginx/sites-available; ls -li"
 alias www="cd /var/www; ls -li"
-alias html="cd /var/www/html/api; ls -li"
-alias dev="cd /var/www/dev/api; ls -li"
+alias html="cd /var/www/production/api; ls -li"
+alias dev="cd /var/www/development/api; ls -li"
 alias logs="cd /var/log/nginx; ls -li"
 
 alias dir="ls -la"
