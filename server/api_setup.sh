@@ -14,7 +14,7 @@ sudo apt-get -y upgrade;
 #
 echo "--------------- Installing Tools";
 
-apt_get_packages=( "git" "curl" "nodejs-legacy" "npm" "php5-mysql" "php5-fpm" "php5-cli" "php5-mcrypt" "mcrypt" "php5-curl" "php5-json" "nginx" );
+apt_get_packages=( "git" "curl" "nodejs-legacy" "npm" "php5-mysql" "php5-fpm" "php5-cli" "php5-mcrypt" "mcrypt" "php5-curl" "php5-json" "python-pip" "nginx" );
 
 for i in "${!apt_get_packages[@]}"; do
 	if [ $(dpkg-query -W -f='${Status}' "${apt_get_packages[$i]}" 2>/dev/null | grep -c "ok installed") -eq 0 ];
