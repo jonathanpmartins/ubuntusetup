@@ -15,7 +15,7 @@ sudo apt-get -y dist-upgrade;
 #
 echo "--------------- Installing Tools";
 
-apt_get_packages=( "curl" "php5-cli" );
+apt_get_packages=( "beanstalkd" "supervisor" "curl" "php5-cli" );
 
 for i in "${!apt_get_packages[@]}"; do
 	if [ $(dpkg-query -W -f='${Status}' "${apt_get_packages[$i]}" 2>/dev/null | grep -c "ok installed") -eq 0 ];
