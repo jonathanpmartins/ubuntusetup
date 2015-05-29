@@ -4,6 +4,13 @@
 # UPDATE / UPGRADE
 #
 
+#
+# MongoDB
+#
+sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 7F0CEB10;
+echo "deb http://repo.mongodb.org/apt/ubuntu trusty/mongodb-org/3.0 multiverse" | sudo tee /etc/apt/sources.list.d/mongodb-org-3.0.list;
+
+
 echo "--------------- Update + Upgrade";
 
 sudo apt-get update;
@@ -14,7 +21,7 @@ sudo apt-get -y upgrade;
 #
 echo "--------------- Installing Tools";
 
-apt_get_packages=( "git" "php5-cli" "curl" "php5-curl" "mcrypt" "php5-mcrypt" "memcached" "php5-memcached" "php5-mysql" "php5-fpm" "php5-json" "nginx" "supervisor" );
+apt_get_packages=( "git" "php5-cli" "curl" "php5-curl" "mcrypt" "php5-mcrypt" "memcached" "php5-memcached" "php5-mysql" "php5-fpm" "php5-json" "php5-dev" "php-pear" "nginx" "supervisor" "mongodb-org" );
 
 for i in "${!apt_get_packages[@]}"; do
 	if [ $(dpkg-query -W -f='${Status}' "${apt_get_packages[$i]}" 2>/dev/null | grep -c "ok installed") -eq 0 ];
