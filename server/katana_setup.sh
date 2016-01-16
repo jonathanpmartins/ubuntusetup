@@ -88,3 +88,5 @@ alias migrate="php artisan migrate"
 ' >> ~/.bashrc;
 	exec bash;
 fi
+
+sudo timedatectl set-timezone America/Sao_Paulo;
