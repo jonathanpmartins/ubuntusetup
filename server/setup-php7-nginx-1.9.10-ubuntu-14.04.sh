@@ -64,11 +64,10 @@ echo '
 
 alias reload="sudo service nginx reload"
 alias restart="sudo service nginx restart"
-alias restartphp="sudo service php7-fpm restart"
+alias restartphp="sudo service php7.0-fpm restart"
 alias restartsql="sudo service mysql restart"
 
 alias hosts="sudo vi /etc/hosts"
-alias phpini="sudo vi /etc/php5/fpm/php.ini"
 alias mybash="vi ~/.bashrc"
 
 alias vhosts="cd /etc/nginx/conf.d; ls -li"
