@@ -14,7 +14,7 @@ sudo apt-get -y upgrade;
 #
 echo "--------------- Installing Tools";
 
-apt_get_packages=( "git" "curl" "php5-mysql" "php5-fpm" "php5-cli" "php5-mcrypt" "mcrypt" "php5-curl" "php5-memcached" "php5-json" "python-pip" "nginx" "beanstalkd" "supervisor" );
+apt_get_packages=( "git" "curl" "php5-mysqlnd" "php5-fpm" "php5-cli" "php5-mcrypt" "mcrypt" "php5-curl" "php5-memcached" "php5-json" "python-pip" "nginx" "beanstalkd" "supervisor" );
 
 for i in "${!apt_get_packages[@]}"; do
 	if [ $(dpkg-query -W -f='${Status}' "${apt_get_packages[$i]}" 2>/dev/null | grep -c "ok installed") -eq 0 ];
