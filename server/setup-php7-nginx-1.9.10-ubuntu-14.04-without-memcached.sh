@@ -56,25 +56,3 @@ else
     echo "--------------- Updating Composer";
     sudo composer self-update;
 fi
-
-if [ $(cat ~/.bashrc | grep -c "mybash") -eq 0 ];
-then
-
-echo '
-
-alias reload="sudo service nginx reload"
-alias restart="sudo service nginx restart"
-alias restartphp="sudo service php7.0-fpm restart"
-
-alias hosts="sudo vi /etc/hosts"
-alias mybash="vi ~/.bashrc"
-
-alias vhosts="cd /etc/nginx/conf.d; ls -li"
-alias www="cd /var/www; ls -li"
-
-alias ..="cd .."
-alias ...="cd ../.."
-
-' >> ~/.bashrc;
-	exec bash;
-fi
