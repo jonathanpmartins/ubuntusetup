@@ -21,7 +21,7 @@ if ! grep -q "$PHP7_PPA" /etc/apt/sources.list /etc/apt/sources.list.d/*; then
     sudo apt-get update;
 fi
 
-apt_get_packages=( "git" "memcached" "mcrypt" "php7.0" "php7.0-dev" "php7.0-fpm" "php7.0-mysql" "php7.0-cli" "php7.0-common" "php7.0-json" "php7.0-curl" "php7.0-mcrypt" "php7.0-readline" "php-memcached" "php-mongodb" "php-redis" ); # "python-pip"
+apt_get_packages=( "git" "memcached" "mcrypt" "php7.0" "php7.0-dev" "php7.0-fpm" "php7.0-mysql" "php7.0-cli" "php7.0-common" "php7.0-json" "php7.0-curl" "php7.0-mcrypt" "php7.0-readline" "php-mongodb" "php-redis" ); # "python-pip"
 # php7.0 php7.0-fpm php7.0-mysql php7.0-cli php7.0-common php7.0-curl php7.0-gd php7.0-json php7.0-mcrypt php7.0-readline
 # api: php5-memcached php5-mongo php5-redis 
 for i in "${!apt_get_packages[@]}"; do
@@ -55,26 +55,4 @@ if [ ! -f /usr/local/bin/composer ]; then
 else
     echo "--------------- Updating Composer";
     sudo composer self-update;
-fi
-
-if [ $(cat ~/.bashrc | grep -c "mybash") -eq 0 ];
-then
-
-echo '
-
-alias reload="sudo service nginx reload"
-alias restart="sudo service nginx restart"
-alias restartphp="sudo service php7.0-fpm restart"
-
-alias hosts="sudo vi /etc/hosts"
-alias mybash="vi ~/.bashrc"
-
-alias vhosts="cd /etc/nginx/conf.d; ls -li"
-alias www="cd /var/www; ls -li"
-
-alias ..="cd .."
-alias ...="cd ../.."
-
-' >> ~/.bashrc;
-	exec bash;
 fi
