@@ -15,7 +15,7 @@ sudo apt-get -y dist-upgrade;
 #
 echo "--------------- Installing Tools";
 
-apt_get_packages=( "awstats" "goaccess" "htop" "unzip" "git" "git-core" "nodejs-legacy" "npm" "mysql-server" "php5-mysqlnd" "php5-fpm" "php5-cli" "php5-json" "php5-mcrypt" "mcrypt" "php5-curl" "curl" "php5-gd" "nginx" );
+apt_get_packages=( "awstats" "goaccess" "htop" "unzip" "git" "git-core" "nodejs-legacy" "npm" "mysql-server" "php5-mysqlnd" "php5-fpm" "php5-cli" "php5-json" "php5-mcrypt" "mcrypt" "php5-curl" "curl" "php5-gd" "nginx" "mongodb-server" "mongodb-clients" );
 
 for i in "${!apt_get_packages[@]}"; do
 	if [ $(dpkg-query -W -f='${Status}' "${apt_get_packages[$i]}" 2>/dev/null | grep -c "ok installed") -eq 0 ];
