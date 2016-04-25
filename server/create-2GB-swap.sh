@@ -6,4 +6,7 @@ sudo chmod 600 /var/swap.1;
 sudo /sbin/mkswap /var/swap.1;
 sudo /sbin/swapon /var/swap.1;
 
+sudo vi /etc/fstab; # add this at the end
+# /var/swap.1   none    swap    sw    0   0
+
 free -m;
